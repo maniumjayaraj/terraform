@@ -1,0 +1,23 @@
+provider "aws" {
+    region ="ap-south-1"
+    access_key = "accesskey"
+    secret_key ="secretkey"
+
+}
+resource "aws_instance" "terraform" {
+    ami = "ami-041d6256ed0f2061c"
+    instance_type = "t2.micro"
+    key_name = "jairaj"
+    vpc_security_group_ids = [ "sg-5b74a927" ]
+    subnet_id = "subnet-b22aded9"
+    root_block_device {
+      volume_type = "gp2"
+      volume_size ="8"
+      delete_on_termination = true
+
+    }
+    tags = {
+    name ="terraform"
+    }
+
+}
